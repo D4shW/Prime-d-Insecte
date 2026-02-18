@@ -42,8 +42,17 @@ if ($is_logged_in) {
 }
 ?>
 
-<div style="max-width: 800px; margin: 0 auto; background: #0f3460; padding: 20px; border-radius: 8px;">
-    <a href="../index.php" style="color: #e94560;">&larr; Retour aux challenges</a>
+<?php if (isset($_GET['success'])): ?>
+        <div class="alert alert-success" style="margin-top: 15px;">
+            🎉 <strong>Félicitations !</strong> Le flag est correct. Challenge validé !
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['error'])): ?>
+        <div class="alert alert-error" style="margin-top: 15px;">
+            ❌ <strong>Mauvais flag !</strong> Cherchez encore.
+        </div>
+    <?php endif; ?>
     
     <h1 style="margin-top: 15px;"><?= htmlspecialchars($challenge['title']) ?></h1>
     
