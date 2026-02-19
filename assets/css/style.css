@@ -1,93 +1,239 @@
 /* assets/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Définition des couleurs principales */
+:root {
+    --bg-color: #0f172a;
+    /* Fond général (Slate 900) */
+    --card-bg: #1e293b;
+    /* Fond des cartes (Slate 800) */
+    --text-main: #cbd5e1;
+    /* Texte standard (Slate 300) */
+    --text-title: #f8fafc;
+    /* Titres (Slate 50) */
+    --primary: #3b82f6;
+    /* Bleu moderne */
+    --primary-hover: #2563eb;
+    /* Bleu survol */
+    --success: #10b981;
+    /* Vert émeraude */
+    --danger: #ef4444;
+    /* Rouge vif */
+    --border: #334155;
+    /* Bordures douces */
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #1a1a2e;
-    color: #e0e0e0;
-    font-family: 'Courier New', Courier, monospace;
-    /* Police style hacking */
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-title);
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
 a {
-    color: #0f3460;
+    color: var(--primary);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: #e94560;
+    color: #60a5fa;
 }
 
-/* Navigation */
+/* 📱 Navigation - Effet Verre Dépoli (Glassmorphism) */
 nav {
-    background-color: #16213e;
-    padding: 15px;
-    border-bottom: 2px solid #e94560;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 15px 5%;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav a {
-    color: #fff;
+    color: var(--text-main);
     margin: 0 15px;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.95rem;
 }
 
-nav .logo {
-    font-size: 1.5em;
-    color: #e94560;
+nav a:hover {
+    color: var(--text-title);
 }
 
-/* Conteneur principal */
+nav .logo a {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-title) !important;
+    letter-spacing: -0.5px;
+}
+
+/* 📦 Conteneur principal */
 .container {
-    width: 80%;
-    margin: 30px auto;
-    background-color: #1f2833;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0;
 }
 
-/* Cartes des challenges */
+/* 🃏 Grille et Cartes Challenges */
 .challenge-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
 }
 
 .challenge-card {
-    background: #0f3460;
-    border: 1px solid #533483;
-    padding: 15px;
-    border-radius: 5px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+}
+
+.challenge-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* 🖱️ Boutons */
 .btn {
     display: inline-block;
-    background-color: #e94560;
-    color: white;
-    padding: 10px 15px;
-    margin-top: 10px;
-    border-radius: 4px;
+    background-color: var(--primary);
+    color: #fff !important;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .btn:hover {
-    background-color: #c0354e;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-/* Alertes */
+/* 📝 Formulaires */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--border);
+    color: var(--text-title);
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+label {
+    font-weight: 500;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+/* 📊 Tables (Panier & Admin) */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+}
+
+th,
+td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background-color: rgba(15, 23, 42, 0.6);
+    color: var(--text-title);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* 🔔 Alertes */
 .alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
 }
 
 .alert-success {
-    background-color: #2ecc71;
-    color: #fff;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-color: rgba(16, 185, 129, 0.2);
 }
 
 .alert-error {
-    background-color: #e74c3c;
-    color: #fff;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.2);
 }
